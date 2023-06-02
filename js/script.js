@@ -13,9 +13,9 @@ function showPage(list, page) {
 
 var itemsPerPage = 9; 
 
-startIndex = (page * itemsPerPage) - itemsPerPage;
+var startIndex = (page * itemsPerPage) - itemsPerPage;
 
-endIndex =(page * itemsPerPage);
+var endIndex =(page * itemsPerPage);
 //
 
 console.log(startIndex);
@@ -57,7 +57,6 @@ studentList.insertAdjacentHTML("beforeend", studentItem);
 }
 
 }
-showPage(data, 4);
 
 function addPagination(list){
 
@@ -79,8 +78,13 @@ for(var i = 1; i <= numOfPages; i++) {
    linkList.addEventListener('click',(event) => {
       if(event.target.tagName === "BUTTON") {
      const previousActiveButton = linkList.querySelector('.active');
+     if(previousActiveButton)    
+     previousActiveButton.className = "";
 
+         const clickedButton = event.target;
+         clickedButton.className = 'active';
 
+         showPage(list,clickedButton.textContent);
       }
 
    });
@@ -94,7 +98,7 @@ for(var i = 1; i <= numOfPages; i++) {
 
 
 
-
+showPage(data, 1);
 addPagination(data);
 
 
