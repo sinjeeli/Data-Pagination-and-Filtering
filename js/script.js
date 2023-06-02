@@ -11,24 +11,44 @@ FSJS Project 2 - Data Pagination and Filtering
 
 function showPage(list, page) {
 
+var itemsPerPage = 9; 
 
-startIndex = (page x 43);
+startIndex = (page * itemsPerPage) - itemsPerPage;
 
-endIndex =(page x 43);
+endIndex =(page * itemsPerPage);
+//
+
+console.log(startIndex);
+console.log(endIndex);
    
    var studentList = document.getElementsByClassName("student-list");
 
 
 studentList.innerHTML = "";
 
-for(var i = 0; i < list.length; i++) {
+for(var i = startIndex; i < endIndex && i < list.length  ; i++) {
 
-   //console.log(list[i]);
+   var student = list[i];
 
+var studentItem = `
+<li class="student-item cf">
+<div class="student-details">
+  <img class="avatar" src="https://randomuser.me/api/portraits/women/25.jpg" alt="Profile Picture">
+  <h3>Ethel Dean</h3>
+  <span class="email">ethel.dean@example.com</span>
+</div>
+<div class="joined-details">
+  <span class="date">Joined 12-15-2005</span>
+</div>
+</li>
+`;
+//
 
-}
+studentList.insertAdjacentHTML('beforeend', studentItem);
 //console.log(list);
 //console.log(page);
+
+}
 
 }
 //
