@@ -76,9 +76,20 @@ for(var i = 1; i <= numOfPages; i++) {
 
 
    linkList.insertAdjacentHTML("beforeend", button);
+   linkList.addEventListener('click',(event) => {
+      if(event.target.tagName === "BUTTON") {
+     const previousActiveButton = linkList.querySelector('.active');
 
+
+      }
+
+   });
+
+
+
+   };
 }
-}
+
 
 
 
