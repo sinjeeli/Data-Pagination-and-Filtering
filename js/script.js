@@ -62,8 +62,27 @@ showPage(data, 4);
 function addPagination(list){
 
    console.log(list);
-      
+   var itemsPerPage = 9;
+
+   var numOfPages = Math.ceil(list.length/itemsPerPage);
+   var linkList = document.querySelector(".link-list");
+
+   linkList.innerHTML = "";
+for(var i = 1; i <= numOfPages; i++) {
+   var button = 
+   `
+   <li><button type="button class="active">1</button></li>
+   `
+
+
+   linkList.insertAdjacentHTML("beforeend", button);
+
 }
+}
+
+
+
+
 
 addPagination(data);
 
