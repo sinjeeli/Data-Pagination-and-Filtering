@@ -21,38 +21,51 @@ endIndex =(page * itemsPerPage);
 console.log(startIndex);
 console.log(endIndex);
    
-   var studentList = document.getElementsByClassName("student-list");
-
+   //var studentList = document.getElementsByClassName('student-list')[0];
+   //var studentList = document.querySelector(".student-list");
+   var studentList = document.querySelector('.student-list');
 
 studentList.innerHTML = "";
 
 for(var i = startIndex; i < endIndex && i < list.length  ; i++) {
 
-   var student = list[i];
-
+   if(data[i]) {
 var studentItem = `
 <li class="student-item cf">
 <div class="student-details">
-  <img class="avatar" src="https://randomuser.me/api/portraits/women/25.jpg" alt="Profile Picture">
-  <h3>Ethel Dean</h3>
-  <span class="email">ethel.dean@example.com</span>
+  <img class="avatar" src="${data[i].picture.large}" alt="Profile Picture">
+  <h3>${data[i].name.first} ${data[i].name.last}</h3>
+  <span class="email">${data[i].email}</span>
 </div>
 <div class="joined-details">
-  <span class="date">Joined 12-15-2005</span>
+  <span class="date">${data[i].registered.date}</span>
+</div>
+<div class="anything">
+  <span class="age">${data[i].registered.age}</span>
 </div>
 </li>
 `;
+
+//$('.student-list').append(studentItem);
+
+
 //
 
-studentList.insertAdjacentHTML('beforeend', studentItem);
-//console.log(list);
-//console.log(page);
-
+studentList.insertAdjacentHTML("beforeend", studentItem);
+//('.student-list').insertAdjacentHTML("beforeend", studentItem);
+}
 }
 
 }
-//
-showPage(data, 1);
+showPage(data, 4);
+
+function addPagination(list){
+
+   console.log(list);
+      
+}
+
+addPagination(data);
 
 
 /*
