@@ -3,7 +3,7 @@ Treehouse Techdegree:
 FSJS Project 2 - Data Pagination and Filtering
 */
 
-console.log(data);
+//console.log(data);
 
 
 
@@ -12,8 +12,28 @@ console.log(data);
 function showPage(list, page) {
 
 
-      
+startIndex = (page x 43);
+
+endIndex =(page x 43);
+   
+   var studentList = document.getElementsByClassName("student-list");
+
+
+studentList.innerHTML = "";
+
+for(var i = 0; i < list.length; i++) {
+
+   //console.log(list[i]);
+
+
 }
+//console.log(list);
+//console.log(page);
+
+}
+//
+showPage(data, 1);
+
 
 /*
 For assistance:
