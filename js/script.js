@@ -1,13 +1,3 @@
-/*
-Treehouse Techdegree:
-FSJS Project 2 - Data Pagination and Filtering
-*/
-
-//console.log(data);
-
-
-
-
 
 function showPage(list, page) {
 
@@ -15,21 +5,13 @@ var itemsPerPage = 9;
 
 var startIndex = (page * itemsPerPage) - itemsPerPage;
 
-var endIndex =(page * itemsPerPage);
-//
-
-console.log(startIndex);
-console.log(endIndex);
-   
-   //var studentList = document.getElementsByClassName('student-list')[0];
-   //var studentList = document.querySelector(".student-list");
-   var studentList = document.querySelector('.student-list');
-
+var endIndex = page * itemsPerPage;
+var studentList = document.querySelector('.student-list');
 studentList.innerHTML = "";
 
-for(var i = startIndex; i < endIndex && i < list.length  ; i++) {
+for(var i = 0; i < list.length; i++) {
 
-   if(data[i]) {
+   if(i >= startIndex && i < endIndex) {
 var studentItem = `
 <li class="student-item cf">
 <div class="student-details">
@@ -46,13 +28,7 @@ var studentItem = `
 </li>
 `;
 
-//$('.student-list').append(studentItem);
-
-
-//
-
 studentList.insertAdjacentHTML("beforeend", studentItem);
-//('.student-list').insertAdjacentHTML("beforeend", studentItem);
 }
 }
 
@@ -60,7 +36,6 @@ studentList.insertAdjacentHTML("beforeend", studentItem);
 
 function addPagination(list){
 
-   console.log(list);
    var itemsPerPage = 9;
 
    var numOfPages = Math.ceil(list.length/itemsPerPage);
@@ -70,58 +45,30 @@ function addPagination(list){
 for(var i = 1; i <= numOfPages; i++) {
    var button = 
    `
-   <li><button type="button class="active">1</button></li>
-   `
-
+   <li><button type="button">${i}</button></li>
+   `;
 
    linkList.insertAdjacentHTML("beforeend", button);
-   linkList.addEventListener('click',(event) => {
-      if(event.target.tagName === "BUTTON") {
-     const previousActiveButton = linkList.querySelector('.active');
-     if(previousActiveButton)    
-     previousActiveButton.className = "";
-
-         const clickedButton = event.target;
-         clickedButton.className = 'active';
-
-         showPage(list,clickedButton.textContent);
-      }
-
-   });
-
-
-
-   };
 }
 
+var buttons = linkList.querySelectorAll("button");
+buttons[0].classList.add("active");
 
+linkList.addEventListener("click", function(event) {
+  if (event.target.tagName === "BUTTON") {
+    var clickedButton = event.target;
+    var page = parseInt(clickedButton.textContent);
 
+    var previousActiveButton = linkList.querySelector(".active");
+    previousActiveButton.classList.remove("active");
 
+    clickedButton.classList.add("active");
 
+    showPage(list, page);
+  }
+});
+}
+
+console.log(data);
 showPage(data, 1);
 addPagination(data);
-
-
-/*
-For assistance:
-   Check out the "Project Resources" section of the Instructions tab: https://teamtreehouse.com/projects/data-pagination-and-filtering#instructions
-   Reach out in your Slack community: https://treehouse-fsjs-102.slack.com/app_redirect?channel=unit-2
-*/
-
-
-
-/*
-Create the `showPage` function
-This function will create and insert/append the elements needed to display a "page" of nine students
-*/
-
-
-
-/*
-Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
-*/
-
-
-
-// Call functions
