@@ -69,6 +69,7 @@ linkList.addEventListener("click", function(event) {
 });
 }
 
+
 console.log(data);
 showPage(data, 1);
 addPagination(data);
